@@ -22,4 +22,12 @@ public class BookTitleMapper {
                 .map(this::mapToBookTitleDto)
                 .toList();
     }
+
+    public BookTitle mapToBookTitle(BookTitleDto bookTitleDto) {
+        return new BookTitle(
+                bookTitleDto.title(),
+                bookTitleDto.author(),
+                bookTitleDto.publishDate()
+        );
+    }
 }

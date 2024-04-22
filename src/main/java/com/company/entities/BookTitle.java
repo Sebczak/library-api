@@ -21,4 +21,10 @@ public class BookTitle {
     private String title;
     private String author;
     private LocalDate publishDate;
+
+    public BookTitle(String title, String author, LocalDate publishDate) {
+        this.title = title;
+        this.author = author;
+        this.publishDate = publishDate;
+    }
 }
