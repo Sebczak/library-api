@@ -12,7 +12,7 @@ public class BookCopyMapper {
     public BookCopyDto mapToBookCopyDto(BookCopy bookCopy) {
         return new BookCopyDto(
                 bookCopy.getBookCopyId(),
-                bookCopy.getBookTitle().getBookTitleId(),
+                bookCopy.getBookTitle(),
                 bookCopy.getStatus()
         );
     }
@@ -21,5 +21,13 @@ public class BookCopyMapper {
         return bookCopyList.stream()
                 .map(this::mapToBookCopyDto)
                 .toList();
+    }
+
+    public BookCopy mapToBookCopy(BookCopyDto bookCopyDto) {
+        return new BookCopy(
+                bookCopyDto.bookCopyId(),
+                bookCopyDto.bookTitle(),
+                bookCopyDto.status()
+        );
     }
 }
