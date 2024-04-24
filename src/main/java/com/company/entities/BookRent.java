@@ -1,6 +1,6 @@
 package com.company.entities;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -11,10 +11,19 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Entity
+@Table
 public class BookRent {
 
-    private Long bookCopyId;
-    private Long readerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long rentId;
+    @ManyToOne
+    @JoinColumn(name = "bookCopyId")
+    private BookCopy bookCopy;
+    @ManyToOne
+    @JoinColumn(name = "readerId")
+    private Reader reader;
     private LocalDate rentalDate;
     private LocalDate returnDate;
 }

@@ -12,7 +12,7 @@ public class BookCopyMapper {
     public BookCopyDto mapToBookCopyDto(BookCopy bookCopy) {
         return new BookCopyDto(
                 bookCopy.getBookCopyId(),
-                bookCopy.getBookTitleId(),
+                bookCopy.getBookTitle().getBookTitleId(),
                 bookCopy.getStatus()
         );
     }

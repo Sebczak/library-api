@@ -16,6 +16,9 @@ public class BookCopy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookCopyId;
-    private Long bookTitleId;
+    @ManyToOne
+    @JoinColumn(name = "bookTitleId")
+    private BookTitle bookTitle;
+    @Enumerated(EnumType.STRING)
     private BookStatus status;
 }

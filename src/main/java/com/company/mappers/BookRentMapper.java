@@ -11,8 +11,8 @@ public class BookRentMapper {
 
     public BookRentDto mapToBookRentDto(BookRent bookRent) {
         return new BookRentDto(
-                bookRent.getBookCopyId(),
-                bookRent.getReaderId(),
+                bookRent.getBookCopy().getBookCopyId(),
+                bookRent.getReader().getReaderId(),
                 bookRent.getRentalDate(),
                 bookRent.getReturnDate()
         );
