@@ -22,4 +22,11 @@ public class ReaderMapper {
                 .map(this::mapToReaderDto)
                 .toList();
     }
+
+    public Reader mapToReader(ReaderDto readerDto) {
+        return new Reader(
+                readerDto.firstname(),
+                readerDto.lastname()
+        );
+    }
 }

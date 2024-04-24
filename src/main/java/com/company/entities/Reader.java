@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,15 +22,17 @@ public class Reader {
     private String firstName;
     private String lastName;
     private LocalDate accountCreationDate;
+    @OneToMany(mappedBy = "reader")
+    private List<BookRent> rentedBooks;
 
-    public Reader(Long readerId, String firstName, String lastName, LocalDate accountCreationDate) {
+    public Reader(Long readerId, String firstName, String lastName) {
         this.readerId = readerId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.accountCreationDate = LocalDate.now();
     }
 
-    public Reader(String firstName, String lastName, LocalDate accountCreationDate) {
+    public Reader(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.accountCreationDate = LocalDate.now();

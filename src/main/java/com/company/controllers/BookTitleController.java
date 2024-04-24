@@ -22,9 +22,8 @@ public class BookTitleController {
     }
 
     @PostMapping
-    public Long createBookTitle(@RequestBody BookTitleDto bookTitleDto) {
-        BookTitle book = bookTitleMapper.mapToBookTitle(bookTitleDto);
-        bookTitleService.saveBookTitle(book);
-        return book.getBookTitleId();
+    public BookTitleDto createBookTitle(@RequestBody BookTitleDto bookTitleDto) {
+        bookTitleService.saveBookTitle(bookTitleDto);
+        return bookTitleDto;
     }
 }
