@@ -3,6 +3,8 @@ package com.company.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+@NamedQuery(name = "BookCopy.findByTitleAndStatus",
+        query = "SELECT bc FROM BookCopy bc WHERE bc.bookTitle.title = :title AND bc.status = :status")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,8 +19,17 @@ public class BookCopy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookCopyId;
     @ManyToOne
-    @JoinColumn(name = "bookTitleId")
+    @JoinColumn(name = "book_title_id")
     private BookTitle bookTitle;
     @Enumerated(EnumType.STRING)
     private BookStatus status;
+
+    public BookCopy(BookTitle bookTitle, BookStatus status) {
+        this.bookTitle = bookTitle;
+        this.status = status;
+    }
+
+    public BookCopy(BookTitle bookTitle) {
+        this.bookTitle = bookTitle;
+    }
 }

@@ -1,6 +1,7 @@
 package com.company.services;
 
 import com.company.dtos.BookTitleDto;
+import com.company.entities.BookCopy;
 import com.company.entities.BookTitle;
 import com.company.mappers.BookTitleMapper;
 import com.company.repositories.BookTitleRepository;
@@ -20,5 +21,9 @@ public class BookTitleService {
     public void saveBookTitle(BookTitleDto bookTitleDto) {
         BookTitle bookTitle = bookTitleMapper.mapToBookTitle(bookTitleDto);
         bookTitleRepository.save(bookTitle);
+    }
+
+    public BookTitle findBookTitle(Long bookTitleId) {
+        return bookTitleRepository.findById(bookTitleId).orElseThrow(() ->  new IllegalStateException("Book with id not found"));
     }
 }
