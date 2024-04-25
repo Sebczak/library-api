@@ -1,6 +1,6 @@
 package com.company.mappers;
 
-import com.company.dto.BookRentDto;
+import com.company.dto.responses.BookRentResponse;
 import com.company.entities.BookRent;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +9,8 @@ import java.util.List;
 @Service
 public class BookRentMapper {
 
-    public BookRentDto mapToBookRentDto(BookRent bookRent) {
-        return new BookRentDto(
+    public BookRentResponse mapToBookRentDto(BookRent bookRent) {
+        return new BookRentResponse(
                 bookRent.getBookCopy().getBookCopyId(),
                 bookRent.getReader().getReaderId(),
                 bookRent.getRentalDate(),
@@ -18,7 +18,7 @@ public class BookRentMapper {
         );
     }
 
-    public List<BookRentDto> mapToBookRentDtoList(List<BookRent> bookRents) {
+    public List<BookRentResponse> mapToBookRentDtoList(List<BookRent> bookRents) {
         return bookRents.stream()
                 .map(this::mapToBookRentDto)
                 .toList();

@@ -1,6 +1,6 @@
 package com.company.services;
 
-import com.company.dto.ReaderDto;
+import com.company.dto.responses.ReaderResponse;
 import com.company.entities.Reader;
 import com.company.mappers.ReaderMapper;
 import com.company.repositories.ReaderRepository;
@@ -16,9 +16,9 @@ public class ReaderService {
         this.readerMapper = readerMapper;
     }
 
-    public void createReader(ReaderDto readerDto) {
+    public void createReader(ReaderResponse readerResponse) {
 
-        Reader reader = readerMapper.mapToReader(readerDto);
+        Reader reader = readerMapper.mapToReader(readerResponse);
         readerRepository.save(reader);
 
     }

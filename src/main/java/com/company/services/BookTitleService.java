@@ -1,6 +1,6 @@
 package com.company.services;
 
-import com.company.dto.BookTitleDto;
+import com.company.dto.responses.BookTitleResponse;
 import com.company.entities.BookTitle;
 import com.company.mappers.BookTitleMapper;
 import com.company.repositories.BookTitleRepository;
@@ -17,8 +17,8 @@ public class BookTitleService {
         this.bookTitleMapper = bookTitleMapper;
     }
 
-    public void saveBookTitle(BookTitleDto bookTitleDto) {
-        BookTitle bookTitle = bookTitleMapper.mapToBookTitle(bookTitleDto);
+    public void saveBookTitle(BookTitleResponse bookTitleResponse) {
+        BookTitle bookTitle = bookTitleMapper.mapToBookTitle(bookTitleResponse);
         bookTitleRepository.save(bookTitle);
     }
 
