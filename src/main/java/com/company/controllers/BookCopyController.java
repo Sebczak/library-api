@@ -1,9 +1,9 @@
 package com.company.controllers;
 
-import com.company.domains.AddBookCopy;
-import com.company.domains.FindBookCopyByStatus;
-import com.company.domains.UpdateBookCopy;
-import com.company.dtos.BookCopyDto;
+import com.company.dto.requests.AddBookCopy;
+import com.company.dto.requests.FindBookCopyByStatus;
+import com.company.dto.requests.UpdateBookCopy;
+import com.company.dto.BookCopyDto;
 import com.company.entities.BookCopy;
 import com.company.entities.BookTitle;
 import com.company.mappers.BookCopyMapper;
@@ -13,7 +13,6 @@ import com.company.services.BookTitleService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("library/v1/book_copy")
@@ -38,10 +37,9 @@ public class BookCopyController {
     }
 
     @GetMapping("/status_count")
-    public int getBookCopyStatusCount(@RequestBody FindBookCopyByStatus findBookCopyByStatus) {
-        List<BookCopy> bookCopies = bookCopyService.findBookCopyByTitle(findBookCopyByStatus.title(), findBookCopyByStatus.status());
+    public Long getBookCopyStatusCount(@RequestBody FindBookCopyByStatus findBookCopyByStatus) {
 
-        return bookCopies.size();
+        return bookCopyService.countBookCopyByTitle(findBookCopyByStatus.status(), findBookCopyByStatus.title());
     }
 
     @PostMapping

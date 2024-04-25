@@ -28,7 +28,7 @@ public class BookCopyService {
         return bookCopyRepository.findById(bookCopyId).orElseThrow(() -> new IllegalStateException("Book copy id not found"));
     }
 
-    public List<BookCopy> findBookCopyByTitle(String title, BookStatus status) {
-        return bookCopyRepository.findByTitleAndStatus(title, status);
+    public Long countBookCopyByTitle(BookStatus status, String title) {
+        return bookCopyRepository.countByTitleAndStatus(title, status);
     }
 }

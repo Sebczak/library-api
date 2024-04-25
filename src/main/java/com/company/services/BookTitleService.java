@@ -1,7 +1,6 @@
 package com.company.services;
 
-import com.company.dtos.BookTitleDto;
-import com.company.entities.BookCopy;
+import com.company.dto.BookTitleDto;
 import com.company.entities.BookTitle;
 import com.company.mappers.BookTitleMapper;
 import com.company.repositories.BookTitleRepository;

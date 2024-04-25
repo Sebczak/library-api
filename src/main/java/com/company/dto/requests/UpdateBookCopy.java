@@ -1,4 +1,4 @@
-package com.company.domains;
+package com.company.dto.requests;
 
 import com.company.entities.BookStatus;
 

@@ -1,7 +1,6 @@
 package com.company.controllers;
 
-import com.company.dtos.BookTitleDto;
-import com.company.entities.BookTitle;
+import com.company.dto.BookTitleDto;
 import com.company.mappers.BookTitleMapper;
 import com.company.services.BookTitleService;
 import org.springframework.web.bind.annotation.PostMapping;
