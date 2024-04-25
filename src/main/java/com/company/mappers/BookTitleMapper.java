@@ -1,6 +1,6 @@
 package com.company.mappers;
 
-import com.company.dto.BookTitleDto;
+import com.company.dto.responses.BookTitleResponse;
 import com.company.entities.BookTitle;
 import org.springframework.stereotype.Service;
 
@@ -9,25 +9,25 @@ import java.util.List;
 @Service
 public class BookTitleMapper {
 
-    public BookTitleDto mapToBookTitleDto(BookTitle bookTitle) {
-        return new BookTitleDto(
+    public BookTitleResponse mapToBookTitleDto(BookTitle bookTitle) {
+        return new BookTitleResponse(
                 bookTitle.getTitle(),
                 bookTitle.getAuthor(),
                 bookTitle.getPublishDate()
         );
     }
 
-    public List<BookTitleDto> mapToBookTitleDtoList(List<BookTitle> bookTitles) {
+    public List<BookTitleResponse> mapToBookTitleDtoList(List<BookTitle> bookTitles) {
         return bookTitles.stream()
                 .map(this::mapToBookTitleDto)
                 .toList();
     }
 
-    public BookTitle mapToBookTitle(BookTitleDto bookTitleDto) {
+    public BookTitle mapToBookTitle(BookTitleResponse bookTitleResponse) {
         return new BookTitle(
-                bookTitleDto.title(),
-                bookTitleDto.author(),
-                bookTitleDto.publishDate()
+                bookTitleResponse.title(),
+                bookTitleResponse.author(),
+                bookTitleResponse.publishDate()
         );
     }
 }

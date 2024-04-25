@@ -3,7 +3,7 @@ package com.company.controllers;
 import com.company.dto.requests.AddBookCopy;
 import com.company.dto.requests.FindBookCopyByStatus;
 import com.company.dto.requests.UpdateBookCopy;
-import com.company.dto.BookCopyDto;
+import com.company.dto.responses.BookCopyResponse;
 import com.company.entities.BookCopy;
 import com.company.entities.BookTitle;
 import com.company.mappers.BookCopyMapper;
@@ -31,7 +31,7 @@ public class BookCopyController {
     }
 
     @GetMapping
-    public List<BookCopyDto> getBookCopy() {
+    public List<BookCopyResponse> getBookCopy() {
         List<BookCopy> bookCopies = bookCopyService.getAllBookCopies();
         return bookCopyMapper.mapToBookCopyDtoList(bookCopies);
     }
@@ -43,7 +43,7 @@ public class BookCopyController {
     }
 
     @PostMapping
-    public BookCopyDto createBookCopy(@RequestBody AddBookCopy addBookCopy) {
+    public BookCopyResponse createBookCopy(@RequestBody AddBookCopy addBookCopy) {
         BookTitle bookTitle = bookTitleService.findBookTitle(addBookCopy.bookTitleId());
         BookCopy bookCopy = new BookCopy(bookTitle, addBookCopy.status());
 
@@ -52,7 +52,7 @@ public class BookCopyController {
     }
 
     @PutMapping
-    public BookCopyDto updateBookCopyStatus(@RequestBody UpdateBookCopy updateBookCopy) {
+    public BookCopyResponse updateBookCopyStatus(@RequestBody UpdateBookCopy updateBookCopy) {
         BookCopy bookCopy = bookCopyService.getBookCopy(updateBookCopy.bookCopyId());
 
         bookCopy.setStatus(updateBookCopy.status());

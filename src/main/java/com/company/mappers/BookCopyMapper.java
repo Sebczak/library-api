@@ -1,6 +1,6 @@
 package com.company.mappers;
 
-import com.company.dto.BookCopyDto;
+import com.company.dto.responses.BookCopyResponse;
 import com.company.entities.BookCopy;
 import org.springframework.stereotype.Service;
 
@@ -9,25 +9,25 @@ import java.util.List;
 @Service
 public class BookCopyMapper {
 
-    public BookCopyDto mapToBookCopyDto(BookCopy bookCopy) {
-        return new BookCopyDto(
+    public BookCopyResponse mapToBookCopyDto(BookCopy bookCopy) {
+        return new BookCopyResponse(
                 bookCopy.getBookCopyId(),
                 bookCopy.getBookTitle(),
                 bookCopy.getStatus()
         );
     }
 
-    public List<BookCopyDto> mapToBookCopyDtoList(List<BookCopy> bookCopyList) {
+    public List<BookCopyResponse> mapToBookCopyDtoList(List<BookCopy> bookCopyList) {
         return bookCopyList.stream()
                 .map(this::mapToBookCopyDto)
                 .toList();
     }
 
-    public BookCopy mapToBookCopy(BookCopyDto bookCopyDto) {
+    public BookCopy mapToBookCopy(BookCopyResponse bookCopyResponse) {
         return new BookCopy(
-                bookCopyDto.bookCopyId(),
-                bookCopyDto.bookTitle(),
-                bookCopyDto.status()
+                bookCopyResponse.bookCopyId(),
+                bookCopyResponse.bookTitle(),
+                bookCopyResponse.status()
         );
     }
 }

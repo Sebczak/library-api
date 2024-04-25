@@ -1,6 +1,6 @@
 package com.company.controllers;
 
-import com.company.dto.BookTitleDto;
+import com.company.dto.responses.BookTitleResponse;
 import com.company.mappers.BookTitleMapper;
 import com.company.services.BookTitleService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +21,8 @@ public class BookTitleController {
     }
 
     @PostMapping
-    public BookTitleDto createBookTitle(@RequestBody BookTitleDto bookTitleDto) {
-        bookTitleService.saveBookTitle(bookTitleDto);
-        return bookTitleDto;
+    public BookTitleResponse createBookTitle(@RequestBody BookTitleResponse bookTitleResponse) {
+        bookTitleService.saveBookTitle(bookTitleResponse);
+        return bookTitleResponse;
     }
 }
