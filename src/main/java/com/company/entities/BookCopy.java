@@ -3,8 +3,8 @@ package com.company.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@NamedQuery(name = "BookCopy.findByTitleAndStatus",
-        query = "SELECT bc FROM BookCopy bc WHERE bc.bookTitle.title = :title AND bc.status = :status")
+@NamedQuery(name = "BookCopy.countByTitleAndStatus",
+        query = "SELECT COUNT(bc) FROM BookCopy bc WHERE bc.bookTitle.title = :title AND bc.status = :status")
 @Getter
 @Setter
 @NoArgsConstructor

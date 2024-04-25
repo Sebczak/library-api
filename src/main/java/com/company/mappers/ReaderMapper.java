@@ -1,6 +1,6 @@
 package com.company.mappers;
 
-import com.company.dtos.ReaderDto;
+import com.company.dto.ReaderDto;
 import com.company.entities.Reader;
 import org.springframework.stereotype.Service;
 

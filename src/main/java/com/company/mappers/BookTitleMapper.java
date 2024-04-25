@@ -1,6 +1,6 @@
 package com.company.mappers;
 
-import com.company.dtos.BookTitleDto;
+import com.company.dto.BookTitleDto;
 import com.company.entities.BookTitle;
 import org.springframework.stereotype.Service;
 

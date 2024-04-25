@@ -1,6 +1,6 @@
 package com.company.mappers;
 
-import com.company.dtos.BookCopyDto;
+import com.company.dto.BookCopyDto;
 import com.company.entities.BookCopy;
 import org.springframework.stereotype.Service;
 

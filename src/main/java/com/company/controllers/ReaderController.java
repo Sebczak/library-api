@@ -1,11 +1,10 @@
 package com.company.controllers;
 
-import com.company.dtos.ReaderDto;
+import com.company.dto.ReaderDto;
 import com.company.entities.Reader;
 import com.company.mappers.ReaderMapper;
 import com.company.repositories.ReaderRepository;
 import com.company.services.ReaderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
