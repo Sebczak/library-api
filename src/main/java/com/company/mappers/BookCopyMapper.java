@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class BookCopyMapper {
 
-    public BookCopyResponse mapToBookCopyDto(BookCopy bookCopy) {
+    public BookCopyResponse mapToBookCopyResponse(BookCopy bookCopy) {
         return new BookCopyResponse(
                 bookCopy.getBookCopyId(),
                 bookCopy.getBookTitle(),
@@ -19,7 +19,7 @@ public class BookCopyMapper {
 
     public List<BookCopyResponse> mapToBookCopyDtoList(List<BookCopy> bookCopyList) {
         return bookCopyList.stream()
-                .map(this::mapToBookCopyDto)
+                .map(this::mapToBookCopyResponse)
                 .toList();
     }
 

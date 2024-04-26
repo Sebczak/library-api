@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class BookRentMapper {
 
-    public BookRentResponse mapToBookRentDto(BookRent bookRent) {
+    public BookRentResponse mapToBookRentResponse(BookRent bookRent) {
         return new BookRentResponse(
                 bookRent.getBookCopy().getBookCopyId(),
                 bookRent.getReader().getReaderId(),
@@ -20,7 +20,7 @@ public class BookRentMapper {
 
     public List<BookRentResponse> mapToBookRentDtoList(List<BookRent> bookRents) {
         return bookRents.stream()
-                .map(this::mapToBookRentDto)
+                .map(this::mapToBookRentResponse)
                 .toList();
     }
 }

@@ -6,6 +6,8 @@ import com.company.mappers.ReaderMapper;
 import com.company.repositories.ReaderRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReaderService {
 
@@ -21,5 +23,9 @@ public class ReaderService {
         Reader reader = readerMapper.mapToReader(readerResponse);
         readerRepository.save(reader);
 
+    }
+
+    public List<Reader> getAllReaders() {
+        return readerRepository.findAll();
     }
 }
