@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class ReaderMapper {
 
-    public ReaderResponse mapToReaderDto(Reader reader) {
+    public ReaderResponse mapToReaderResponse(Reader reader) {
         return new ReaderResponse(
                 reader.getFirstName(),
                 reader.getLastName(),
@@ -19,7 +19,7 @@ public class ReaderMapper {
 
     public List<ReaderResponse> mapToReaderDtoList(List<Reader> readers) {
         return readers.stream()
-                .map(this::mapToReaderDto)
+                .map(this::mapToReaderResponse)
                 .toList();
     }
 

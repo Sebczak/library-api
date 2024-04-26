@@ -5,7 +5,6 @@ import com.company.dto.requests.FindBookCopyByStatus;
 import com.company.dto.requests.UpdateBookCopy;
 import com.company.dto.responses.BookCopyResponse;
 import com.company.entities.BookCopy;
-import com.company.entities.BookTitle;
 import com.company.mappers.BookCopyMapper;
 import com.company.repositories.BookCopyRepository;
 import com.company.services.BookCopyService;
@@ -44,20 +43,15 @@ public class BookCopyController {
 
     @PostMapping
     public BookCopyResponse createBookCopy(@RequestBody AddBookCopy addBookCopy) {
-        BookTitle bookTitle = bookTitleService.findBookTitle(addBookCopy.bookTitleId());
-        BookCopy bookCopy = new BookCopy(bookTitle, addBookCopy.status());
+        BookCopy bookCopy = bookCopyService.createBookCopy(addBookCopy);
 
-        bookCopyRepository.save(bookCopy);
-        return bookCopyMapper.mapToBookCopyDto(bookCopy);
+        return bookCopyMapper.mapToBookCopyResponse(bookCopy);
     }
 
     @PutMapping
     public BookCopyResponse updateBookCopyStatus(@RequestBody UpdateBookCopy updateBookCopy) {
-        BookCopy bookCopy = bookCopyService.getBookCopy(updateBookCopy.bookCopyId());
+        BookCopy bookCopy = bookCopyService.updateBookCopyStatus(updateBookCopy);
 
-        bookCopy.setStatus(updateBookCopy.status());
-
-        bookCopyRepository.save(bookCopy);
-        return bookCopyMapper.mapToBookCopyDto(bookCopy);
+        return bookCopyMapper.mapToBookCopyResponse(bookCopy);
     }
 }

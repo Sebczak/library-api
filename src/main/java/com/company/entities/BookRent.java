@@ -24,6 +24,7 @@ public class BookRent {
     @ManyToOne
     @JoinColumn(name = "readerId")
     private Reader reader;
+    private boolean isBookCopyReturned = false;
     private LocalDate rentalDate;
     private LocalDate returnDate;
 }

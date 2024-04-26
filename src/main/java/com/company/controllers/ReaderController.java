@@ -25,7 +25,7 @@ public class ReaderController {
 
     @GetMapping
     public List<ReaderResponse> getAllReaders() {
-        List<Reader> readers = readerRepository.findAll();
+        List<Reader> readers = readerService.getAllReaders();
         return readerMapper.mapToReaderDtoList(readers);
     }
 
