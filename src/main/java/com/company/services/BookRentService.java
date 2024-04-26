@@ -55,7 +55,7 @@ public class BookRentService {
             throw new IllegalStateException("Book is already returned");
         } else {
             if (bookRent.getReturnDate().isBefore(todayDate)) {
-                if (bookRentReturnRequest.bookFee() == null || bookRentReturnRequest.bookFee().compareTo(BigDecimal.TEN) < 10) {
+                if (bookRentReturnRequest.bookFee() != null || bookRentReturnRequest.bookFee().compareTo(BigDecimal.TEN) < 10) {
                     throw new IllegalStateException("Return date is greater than current date, please pay the fee. Free is 10$");
                 } else {
                     bookRent.setBookCopyReturned(true);
