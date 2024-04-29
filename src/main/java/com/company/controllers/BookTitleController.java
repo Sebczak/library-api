@@ -1,5 +1,6 @@
 package com.company.controllers;
 
+import com.company.dto.requests.CreateBookTitleRequest;
 import com.company.dto.responses.BookTitleResponse;
 import com.company.mappers.BookTitleMapper;
 import com.company.services.BookTitleService;
@@ -21,8 +22,7 @@ public class BookTitleController {
     }
 
     @PostMapping
-    public BookTitleResponse createBookTitle(@RequestBody BookTitleResponse bookTitleResponse) {
-        bookTitleService.saveBookTitle(bookTitleResponse);
-        return bookTitleResponse;
+    public BookTitleResponse createBookTitle(@RequestBody CreateBookTitleRequest createBookTitleRequest) {
+        return bookTitleService.saveBookTitle(createBookTitleRequest);
     }
 }
