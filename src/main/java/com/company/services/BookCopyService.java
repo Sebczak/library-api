@@ -1,7 +1,7 @@
 package com.company.services;
 
-import com.company.dto.requests.AddBookCopy;
-import com.company.dto.requests.UpdateBookCopy;
+import com.company.dto.requests.AddBookCopyRequest;
+import com.company.dto.requests.UpdateBookCopyRequest;
 import com.company.entities.BookCopy;
 import com.company.entities.BookStatus;
 import com.company.entities.BookTitle;
@@ -26,10 +26,10 @@ public class BookCopyService {
         return bookCopyRepository.findAll();
     }
 
-    public BookCopy updateBookCopyStatus(UpdateBookCopy updateBookCopy) {
-        BookCopy bookCopy = bookCopyRepository.findById(updateBookCopy.bookCopyId()).orElseThrow(() -> new IllegalStateException("Book Copy not found"));
+    public BookCopy updateBookCopyStatus(UpdateBookCopyRequest updateBookCopyRequest) {
+        BookCopy bookCopy = bookCopyRepository.findById(updateBookCopyRequest.bookCopyId()).orElseThrow(() -> new IllegalStateException("Book Copy not found"));
 
-        bookCopy.setStatus(updateBookCopy.status());
+        bookCopy.setStatus(updateBookCopyRequest.status());
         return bookCopyRepository.save(bookCopy);
     }
 
@@ -37,8 +37,8 @@ public class BookCopyService {
         return bookCopyRepository.countByTitleAndStatus(title, status);
     }
 
-    public BookCopy createBookCopy(AddBookCopy addBookCopy) {
-        BookTitle bookTitle = bookTitleRepository.findById(addBookCopy.bookTitleId()).orElseThrow(() -> new IllegalStateException("Book title not found"));
+    public BookCopy createBookCopy(AddBookCopyRequest addBookCopyRequest) {
+        BookTitle bookTitle = bookTitleRepository.findById(addBookCopyRequest.bookTitleId()).orElseThrow(() -> new IllegalStateException("Book title not found"));
 
         BookCopy bookCopy = new BookCopy();
         bookCopy.setBookTitle(bookTitle);

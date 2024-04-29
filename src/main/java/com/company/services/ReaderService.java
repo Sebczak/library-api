@@ -1,5 +1,6 @@
 package com.company.services;
 
+import com.company.dto.requests.CreateNewReaderRequest;
 import com.company.dto.responses.ReaderResponse;
 import com.company.entities.Reader;
 import com.company.mappers.ReaderMapper;
@@ -18,14 +19,16 @@ public class ReaderService {
         this.readerMapper = readerMapper;
     }
 
-    public void createReader(ReaderResponse readerResponse) {
+    public ReaderResponse createReader(CreateNewReaderRequest createNewReaderRequest) {
 
-        Reader reader = readerMapper.mapToReader(readerResponse);
+        Reader reader = new Reader(createNewReaderRequest.firstName(), createNewReaderRequest.lastName());
         readerRepository.save(reader);
 
+        return readerMapper.mapToReaderResponse(reader);
     }
 
-    public List<Reader> getAllReaders() {
-        return readerRepository.findAll();
+    public List<ReaderResponse> getAllReaders() {
+        List<Reader> readers = readerRepository.findAll();
+        return readerMapper.mapToReaderResponseList(readers);
     }
 }

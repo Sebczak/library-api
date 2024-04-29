@@ -1,7 +1,7 @@
 package com.company.controllers;
 
+import com.company.dto.requests.CreateNewReaderRequest;
 import com.company.dto.responses.ReaderResponse;
-import com.company.entities.Reader;
 import com.company.mappers.ReaderMapper;
 import com.company.repositories.ReaderRepository;
 import com.company.services.ReaderService;
@@ -25,13 +25,11 @@ public class ReaderController {
 
     @GetMapping
     public List<ReaderResponse> getAllReaders() {
-        List<Reader> readers = readerService.getAllReaders();
-        return readerMapper.mapToReaderDtoList(readers);
+        return readerService.getAllReaders();
     }
 
     @PostMapping
-    public ReaderResponse createReader(@RequestBody ReaderResponse readerResponse) {
-        readerService.createReader(readerResponse);
-        return readerResponse;
+    public ReaderResponse createReader(@RequestBody CreateNewReaderRequest createNewReaderRequest) {
+        return readerService.createReader(createNewReaderRequest);
     }
 }

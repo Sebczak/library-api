@@ -11,6 +11,7 @@ public class BookTitleMapper {
 
     public BookTitleResponse mapToBookTitleResponse(BookTitle bookTitle) {
         return new BookTitleResponse(
+                bookTitle.getBookTitleId(),
                 bookTitle.getTitle(),
                 bookTitle.getAuthor(),
                 bookTitle.getPublishDate()

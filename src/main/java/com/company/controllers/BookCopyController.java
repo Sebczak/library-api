@@ -1,8 +1,8 @@
 package com.company.controllers;
 
-import com.company.dto.requests.AddBookCopy;
+import com.company.dto.requests.AddBookCopyRequest;
 import com.company.dto.requests.FindBookCopyByStatus;
-import com.company.dto.requests.UpdateBookCopy;
+import com.company.dto.requests.UpdateBookCopyRequest;
 import com.company.dto.responses.BookCopyResponse;
 import com.company.entities.BookCopy;
 import com.company.mappers.BookCopyMapper;
@@ -42,15 +42,15 @@ public class BookCopyController {
     }
 
     @PostMapping
-    public BookCopyResponse createBookCopy(@RequestBody AddBookCopy addBookCopy) {
-        BookCopy bookCopy = bookCopyService.createBookCopy(addBookCopy);
+    public BookCopyResponse createBookCopy(@RequestBody AddBookCopyRequest addBookCopyRequest) {
+        BookCopy bookCopy = bookCopyService.createBookCopy(addBookCopyRequest);
 
         return bookCopyMapper.mapToBookCopyResponse(bookCopy);
     }
 
     @PutMapping
-    public BookCopyResponse updateBookCopyStatus(@RequestBody UpdateBookCopy updateBookCopy) {
-        BookCopy bookCopy = bookCopyService.updateBookCopyStatus(updateBookCopy);
+    public BookCopyResponse updateBookCopyStatus(@RequestBody UpdateBookCopyRequest updateBookCopyRequest) {
+        BookCopy bookCopy = bookCopyService.updateBookCopyStatus(updateBookCopyRequest);
 
         return bookCopyMapper.mapToBookCopyResponse(bookCopy);
     }
