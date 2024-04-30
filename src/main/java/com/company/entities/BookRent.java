@@ -27,4 +27,11 @@ public class BookRent {
     private boolean isBookCopyReturned = false;
     private LocalDate rentalDate;
     private LocalDate returnDate;
+
+    public BookRent(BookCopy bookCopy, Reader reader, LocalDate rentalDate, LocalDate returnDate) {
+        this.bookCopy = bookCopy;
+        this.reader = reader;
+        this.rentalDate = rentalDate;
+        this.returnDate = returnDate;
+    }
 }

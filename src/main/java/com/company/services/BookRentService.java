@@ -2,10 +2,12 @@ package com.company.services;
 
 import com.company.dto.requests.AddBookRentRequest;
 import com.company.dto.requests.BookRentReturnRequest;
+import com.company.dto.responses.BookRentResponse;
 import com.company.entities.BookCopy;
 import com.company.entities.BookRent;
 import com.company.entities.BookStatus;
 import com.company.entities.Reader;
+import com.company.mappers.BookRentMapper;
 import com.company.repositories.BookCopyRepository;
 import com.company.repositories.BookRentRepository;
 import com.company.repositories.ReaderRepository;
@@ -20,14 +22,16 @@ public class BookRentService {
     private final BookRentRepository bookRentRepository;
     private final BookCopyRepository bookCopyRepository;
     private final ReaderRepository readerRepository;
+    private final BookRentMapper bookRentMapper;
 
-    public BookRentService(BookRentRepository bookRentRepository, BookCopyRepository bookCopyRepository, ReaderRepository readerRepository) {
+    public BookRentService(BookRentRepository bookRentRepository, BookCopyRepository bookCopyRepository, ReaderRepository readerRepository, BookRentMapper bookRentMapper) {
         this.bookRentRepository = bookRentRepository;
         this.bookCopyRepository = bookCopyRepository;
         this.readerRepository = readerRepository;
+        this.bookRentMapper = bookRentMapper;
     }
 
-    public BookRent addBookRent(AddBookRentRequest bookRentRequest) {
+    public BookRentResponse addBookRent(AddBookRentRequest bookRentRequest) {
         BookCopy bookCopy = bookCopyRepository.findById(bookRentRequest.bookCopyId()).orElseThrow(() -> new IllegalStateException("Book copy not found"));
         Reader reader = readerRepository.findById(bookRentRequest.readerId()).orElseThrow(() -> new IllegalStateException("Reader not found"));
 
@@ -35,22 +39,18 @@ public class BookRentService {
             throw new IllegalStateException("Book copy status is not AVAILABLE");
         }
 
-        BookRent bookRent = new BookRent();
-        bookRent.setBookCopy(bookCopy);
-        bookRent.setReader(reader);
-        bookRent.setRentalDate(LocalDate.now());
-        bookRent.setReturnDate(LocalDate.now().plusDays(14));
+        BookRent bookRent = new BookRent(bookCopy, reader, LocalDate.now(), LocalDate.now().plusDays(14));
         bookCopy.setStatus(BookStatus.RENTED);
 
-        return bookRentRepository.save(bookRent);
+        bookRentRepository.save(bookRent);
+
+        return bookRentMapper.mapToBookRentResponse(bookRent);
     }
 
-    public BookRent returnBookCopy(BookRentReturnRequest bookRentReturnRequest) {
+    public BookRentResponse returnBookCopy(BookRentReturnRequest bookRentReturnRequest) {
         BookRent bookRent = bookRentRepository.findById(bookRentReturnRequest.bookRentId()).orElseThrow(() -> new IllegalStateException("Book Rent not found"));
 
         LocalDate todayDate = LocalDate.now();
-        System.out.println(todayDate);
-        System.out.println(bookRent.getReturnDate());
         if (bookRent.isBookCopyReturned() == true) {
             throw new IllegalStateException("Book is already returned");
         } else {
@@ -66,7 +66,7 @@ public class BookRentService {
         bookRent.setBookCopyReturned(true);
         bookRent.getBookCopy().setStatus(BookStatus.AVAILABLE);
 
-
-        return bookRentRepository.save(bookRent);
+        bookRentRepository.save(bookRent);
+        return bookRentMapper.mapToBookRentResponse(bookRent);
     }
 }
