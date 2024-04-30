@@ -17,17 +17,9 @@ public class BookCopyMapper {
         );
     }
 
-    public List<BookCopyResponse> mapToBookCopyDtoList(List<BookCopy> bookCopyList) {
-        return bookCopyList.stream()
+    public List<BookCopyResponse> mapToBookCopyResponseList(List<BookCopy> bookCopies) {
+        return bookCopies.stream()
                 .map(this::mapToBookCopyResponse)
                 .toList();
-    }
-
-    public BookCopy mapToBookCopy(BookCopyResponse bookCopyResponse) {
-        return new BookCopy(
-                bookCopyResponse.bookCopyId(),
-                bookCopyResponse.bookTitle(),
-                bookCopyResponse.status()
-        );
     }
 }

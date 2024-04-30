@@ -1,6 +1,5 @@
 package com.company.mappers;
 
-import com.company.dto.requests.CreateNewReaderRequest;
 import com.company.dto.responses.ReaderResponse;
 import com.company.entities.Reader;
 import org.springframework.stereotype.Service;

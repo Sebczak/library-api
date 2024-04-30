@@ -37,7 +37,7 @@ class BookTitleServiceTest {
         createBookTitleRequest = new CreateBookTitleRequest("test", "test", LocalDate.now());
     }
     @Test
-    void saveBookTitle() {
+    void shouldSaveBookTitle() {
         //Given
         when(bookTitleMapper.mapToBookTitleResponse(any(BookTitle.class))).thenReturn(new BookTitleResponse(999L, createBookTitleRequest.title(), createBookTitleRequest.author(), LocalDate.now()));
         when(bookTitleRepository.save(any(BookTitle.class))).thenReturn(new BookTitle());

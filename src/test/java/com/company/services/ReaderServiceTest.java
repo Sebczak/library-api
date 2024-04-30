@@ -49,10 +49,10 @@ class ReaderServiceTest {
     }
 
     @Test
-    void getAllReaders() {
+    void shouldGetAllReaders() {
         // Given
-        List<Reader> mockedReaders = List.of(new Reader());
-        when(readerRepository.findAll()).thenReturn(mockedReaders);
+        List<Reader> readers = List.of(new Reader());
+        when(readerRepository.findAll()).thenReturn(readers);
         when(readerMapper.mapToReaderResponseList(any(List.class))).thenReturn(List.of(new ReaderResponse(999L, createNewReaderRequest.firstName(), createNewReaderRequest.lastName(), LocalDate.now())));
 
         // When

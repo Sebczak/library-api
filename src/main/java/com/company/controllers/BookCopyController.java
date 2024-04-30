@@ -1,6 +1,6 @@
 package com.company.controllers;
 
-import com.company.dto.requests.AddBookCopyRequest;
+import com.company.dto.requests.CreateBookCopyRequest;
 import com.company.dto.requests.FindBookCopyByStatus;
 import com.company.dto.requests.UpdateBookCopyRequest;
 import com.company.dto.responses.BookCopyResponse;
@@ -31,8 +31,7 @@ public class BookCopyController {
 
     @GetMapping
     public List<BookCopyResponse> getBookCopy() {
-        List<BookCopy> bookCopies = bookCopyService.getAllBookCopies();
-        return bookCopyMapper.mapToBookCopyDtoList(bookCopies);
+        return bookCopyService.getAllBookCopies();
     }
 
     @GetMapping("/status_count")
@@ -42,8 +41,8 @@ public class BookCopyController {
     }
 
     @PostMapping
-    public BookCopyResponse createBookCopy(@RequestBody AddBookCopyRequest addBookCopyRequest) {
-        BookCopy bookCopy = bookCopyService.createBookCopy(addBookCopyRequest);
+    public BookCopyResponse createBookCopy(@RequestBody CreateBookCopyRequest createBookCopyRequest) {
+        BookCopy bookCopy = bookCopyService.createBookCopy(createBookCopyRequest);
 
         return bookCopyMapper.mapToBookCopyResponse(bookCopy);
     }
