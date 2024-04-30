@@ -13,13 +13,9 @@ import java.util.List;
 @RequestMapping("library/v1/reader")
 public class ReaderController {
 
-    private final ReaderRepository readerRepository;
-    private final ReaderMapper readerMapper;
     private final ReaderService readerService;
 
-    public ReaderController(ReaderRepository readerRepository, ReaderMapper readerMapper, ReaderService readerService) {
-        this.readerRepository = readerRepository;
-        this.readerMapper = readerMapper;
+    public ReaderController(ReaderService readerService) {
         this.readerService = readerService;
     }
 

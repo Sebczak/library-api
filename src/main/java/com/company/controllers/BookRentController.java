@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.*;
 public class BookRentController {
 
     private final BookRentService bookRentService;
-    private final BookRentMapper bookRentMapper;
 
-    public BookRentController(BookRentService bookRentService, BookRentMapper bookRentMapper) {
+    public BookRentController(BookRentService bookRentService) {
         this.bookRentService = bookRentService;
-        this.bookRentMapper = bookRentMapper;
     }
 
     @PostMapping
