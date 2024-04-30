@@ -1,6 +1,7 @@
 package com.company.services;
 
 import com.company.dto.requests.CreateBookCopyRequest;
+import com.company.dto.requests.UpdateBookCopyRequest;
 import com.company.dto.responses.BookCopyResponse;
 import com.company.entities.BookCopy;
 import com.company.entities.BookStatus;
@@ -58,16 +59,17 @@ class BookCopyServiceTest {
     void shouldUpdateBookCopyStatus() {
         // Given
         BookTitle bookTitle = new BookTitle("test", "test", LocalDate.now());
+        BookCopy bookCopy = new BookCopy();
         when(bookTitleRepository.findById(1L)).thenReturn(Optional.of(bookTitle));
+        when(bookCopyRepository.findById(1L)).thenReturn(Optional.of(bookCopy));
         when(bookCopyRepository.save(any(BookCopy.class))).thenReturn(new BookCopy());
         when(bookCopyMapper.mapToBookCopyResponse(any(BookCopy.class))).thenReturn(new BookCopyResponse(1L, bookTitle, BookStatus.AVAILABLE));
 
         // When
-        BookCopy bookCopy = bookCopyService.createBookCopy(new CreateBookCopyRequest(1L));
-        bookCopy.setStatus(BookStatus.LOST);
+        BookCopyResponse bookCopyResponse = bookCopyService.updateBookCopyStatus(new UpdateBookCopyRequest(1L, BookStatus.LOST));
 
         //Then
-        assertThat(bookCopy.getStatus()).isEqualTo(BookStatus.LOST);
+        assertThat(bookCopyResponse.status()).isEqualTo(BookStatus.LOST);
     }
 
     @Test
@@ -102,9 +104,9 @@ class BookCopyServiceTest {
         when(bookCopyMapper.mapToBookCopyResponse(any(BookCopy.class))).thenReturn(new BookCopyResponse(1L, bookTitle, BookStatus.AVAILABLE));
 
         // When
-        BookCopy bookCopy = bookCopyService.createBookCopy(new CreateBookCopyRequest(1L));
+        BookCopyResponse bookCopyResponse = bookCopyService.createBookCopy(new CreateBookCopyRequest(1L));
 
         // Then
-        assertThat(bookCopy).isNotNull();
+        assertThat(bookCopyResponse).isNotNull();
     }
 }

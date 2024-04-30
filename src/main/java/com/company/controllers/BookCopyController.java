@@ -4,7 +4,6 @@ import com.company.dto.requests.CreateBookCopyRequest;
 import com.company.dto.requests.FindBookCopyByStatus;
 import com.company.dto.requests.UpdateBookCopyRequest;
 import com.company.dto.responses.BookCopyResponse;
-import com.company.entities.BookCopy;
 import com.company.mappers.BookCopyMapper;
 import com.company.repositories.BookCopyRepository;
 import com.company.services.BookCopyService;
@@ -18,15 +17,9 @@ import java.util.List;
 public class BookCopyController {
 
     private final BookCopyService bookCopyService;
-    private final BookTitleService bookTitleService;
-    private final BookCopyMapper bookCopyMapper;
-    private final BookCopyRepository bookCopyRepository;
 
-    public BookCopyController(BookCopyService bookCopyService, BookTitleService bookTitleService, BookCopyMapper bookCopyMapper, BookCopyRepository bookCopyRepository) {
+    public BookCopyController(BookCopyService bookCopyService) {
         this.bookCopyService = bookCopyService;
-        this.bookTitleService = bookTitleService;
-        this.bookCopyMapper = bookCopyMapper;
-        this.bookCopyRepository = bookCopyRepository;
     }
 
     @GetMapping
@@ -36,21 +29,16 @@ public class BookCopyController {
 
     @GetMapping("/status_count")
     public Long getBookCopyStatusCount(@RequestBody FindBookCopyByStatus findBookCopyByStatus) {
-
         return bookCopyService.countBookCopyByTitle(findBookCopyByStatus.status(), findBookCopyByStatus.title());
     }
 
     @PostMapping
     public BookCopyResponse createBookCopy(@RequestBody CreateBookCopyRequest createBookCopyRequest) {
-        BookCopy bookCopy = bookCopyService.createBookCopy(createBookCopyRequest);
-
-        return bookCopyMapper.mapToBookCopyResponse(bookCopy);
+        return bookCopyService.createBookCopy(createBookCopyRequest);
     }
 
     @PutMapping
     public BookCopyResponse updateBookCopyStatus(@RequestBody UpdateBookCopyRequest updateBookCopyRequest) {
-        BookCopy bookCopy = bookCopyService.updateBookCopyStatus(updateBookCopyRequest);
-
-        return bookCopyMapper.mapToBookCopyResponse(bookCopy);
+        return bookCopyService.updateBookCopyStatus(updateBookCopyRequest);
     }
 }

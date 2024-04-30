@@ -31,24 +31,28 @@ public class BookCopyService {
         return bookCopyMapper.mapToBookCopyResponseList(bookCopies);
     }
 
-    public BookCopy updateBookCopyStatus(UpdateBookCopyRequest updateBookCopyRequest) {
+    public BookCopyResponse updateBookCopyStatus(UpdateBookCopyRequest updateBookCopyRequest) {
         BookCopy bookCopy = bookCopyRepository.findById(updateBookCopyRequest.bookCopyId()).orElseThrow(() -> new IllegalStateException("Book Copy not found"));
 
         bookCopy.setStatus(updateBookCopyRequest.status());
-        return bookCopyRepository.save(bookCopy);
+
+        bookCopyRepository.save(bookCopy);
+        return bookCopyMapper.mapToBookCopyResponse(bookCopy);
     }
 
     public Long countBookCopyByTitle(BookStatus status, String title) {
         return bookCopyRepository.countByTitleAndStatus(title, status);
     }
 
-    public BookCopy createBookCopy(CreateBookCopyRequest createBookCopyRequest) {
+    public BookCopyResponse createBookCopy(CreateBookCopyRequest createBookCopyRequest) {
         BookTitle bookTitle = bookTitleRepository.findById(createBookCopyRequest.bookTitleId()).orElseThrow(() -> new IllegalStateException("Book title not found"));
 
         BookCopy bookCopy = new BookCopy();
         bookCopy.setBookTitle(bookTitle);
         bookCopy.setStatus(BookStatus.AVAILABLE);
 
-        return bookCopyRepository.save(bookCopy);
+        bookCopyRepository.save(bookCopy);
+
+        return bookCopyMapper.mapToBookCopyResponse(bookCopy);
     }
 }

@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("library/v1/book")
 public class BookTitleController {
 
-    private final BookTitleMapper bookTitleMapper;
     private final BookTitleService bookTitleService;
 
-    public BookTitleController(BookTitleMapper bookTitleMapper, BookTitleService bookTitleService) {
-        this.bookTitleMapper = bookTitleMapper;
+    public BookTitleController(BookTitleService bookTitleService) {
         this.bookTitleService = bookTitleService;
     }
 
