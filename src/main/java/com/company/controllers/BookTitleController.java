@@ -2,15 +2,12 @@ package com.company.controllers;
 
 import com.company.dto.requests.CreateBookTitleRequest;
 import com.company.dto.responses.BookTitleResponse;
-import com.company.mappers.BookTitleMapper;
 import com.company.services.BookTitleService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("library/v1/book")
+@CrossOrigin("*")
 public class BookTitleController {
 
     private final BookTitleService bookTitleService;

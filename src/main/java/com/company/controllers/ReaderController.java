@@ -2,8 +2,6 @@ package com.company.controllers;
 
 import com.company.dto.requests.CreateNewReaderRequest;
 import com.company.dto.responses.ReaderResponse;
-import com.company.mappers.ReaderMapper;
-import com.company.repositories.ReaderRepository;
 import com.company.services.ReaderService;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("library/v1/reader")
+@CrossOrigin("*")
 public class ReaderController {
 
     private final ReaderService readerService;
