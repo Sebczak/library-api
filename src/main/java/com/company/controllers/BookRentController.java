@@ -3,12 +3,12 @@ package com.company.controllers;
 import com.company.dto.requests.AddBookRentRequest;
 import com.company.dto.requests.BookRentReturnRequest;
 import com.company.dto.responses.BookRentResponse;
-import com.company.mappers.BookRentMapper;
 import com.company.services.BookRentService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("library/v1/book_rent")
+@CrossOrigin("*")
 public class BookRentController {
 
     private final BookRentService bookRentService;

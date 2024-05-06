@@ -4,16 +4,14 @@ import com.company.dto.requests.CreateBookCopyRequest;
 import com.company.dto.requests.FindBookCopyByStatus;
 import com.company.dto.requests.UpdateBookCopyRequest;
 import com.company.dto.responses.BookCopyResponse;
-import com.company.mappers.BookCopyMapper;
-import com.company.repositories.BookCopyRepository;
 import com.company.services.BookCopyService;
-import com.company.services.BookTitleService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("library/v1/book_copy")
+@CrossOrigin("*")
 public class BookCopyController {
 
     private final BookCopyService bookCopyService;
